@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC  
+    "-//mybatis.org//DTD Config 3.0//EN"  
+     "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+    <mappers>
+        <mapper resource="com/wjmShop/user/mapping/UserMapping.xml"/>
+        <mapper resource="com/wjmShop/category/mapping/CategoryMapping.xml"/>
+        <mapper resource="com/wjmShop/product/mapping/ProductMapping.xml"/>
+        <mapper resource="com/wjmShop/categorySecond/mapping/CategorySecondMapping.xml"/>
+        <mapper resource="com/wjmShop/order/mapping/OrderItemMapping.xml"/>
+        <mapper resource="com/wjmShop/order/mapping/OrderMapping.xml"/>
+        <mapper resource="com/wjmShop/adminUser/mapping/AdminUserMapping.xml"/>
+    </mappers>  
+</configuration>  

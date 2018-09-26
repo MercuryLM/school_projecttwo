@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="userMapping">  
+  
+  <insert id="userSave" parameterType="com.wjmShop.bean.User" flushCache="true">  
+     INSERT INTO user (username, password, name, email, phone, addr, state, code) 
+     VALUES (#{username}, #{password}, #{name}, #{email}, #{phone}, #{addr}, #{state}, #{code})  
+ </insert>  
+  
+  <select id="findByUser" parameterType="String" resultType="com.wjmShop.bean.User">
+	  SELECT
+	  uid
+	  ,username
+	  ,password
+	  ,name
+	  ,email
+	  ,phone
+	  ,addr
+	  ,state
+	  ,code
+	  FROM user 
+	  WHERE username = #{username}
+  </select>
+  
+  <select id="findByCode" parameterType="String" resultType="com.wjmShop.bean.User">
+	 SELECT
+	 uid
+	 ,username
+	 ,password
+	 ,name
+	 ,email
+	 ,phone
+	 ,addr
+	 ,state
+	 ,code
+	 FROM user 
+	 WHERE code = #{code}
+  </select>
+  
+  <update id="updateState">
+  UPDATE user SET state = 1, code = null WHERE username = #{username}
+  </update>
+  
+  <select id="login" parameterType="com.wjmShop.bean.User" resultType="com.wjmShop.bean.User">
+  	SELECT
+	 uid
+	 ,username
+	 ,password
+	 ,name
+	 ,email
+	 ,phone
+	 ,addr
+	 ,state
+	 ,code
+	 FROM user 
+	 WHERE username = #{username} and password = #{password} and state = #{state};
+  </select>
+  
+  <select id="findCount" resultType="java.lang.Integer">
+	SELECT count(*) FROM user
+	</select>
+	
+	<select id="findByPage" resultType="com.wjmShop.bean.User">
+	SELECT
+	 uid
+	 ,username
+	 ,password
+	 ,name
+	 ,email
+	 ,phone
+	 ,addr
+	 ,state
+	 ,code
+	 FROM user 
+	 ORDER BY uid
+	 LIMIT #{begin},#{limit}
+	</select>
+	
+	<select id="findByUid" parameterType="java.lang.Integer" resultType="com.wjmShop.bean.User">
+	  SELECT
+	  uid
+	  ,username
+	  ,password
+	  ,name
+	  ,email
+	  ,phone
+	  ,addr
+	  ,state
+	  ,code
+	  FROM user 
+	  WHERE uid = #{uid}
+  </select>
+  
+  <delete id="userDelete" parameterType="com.wjmShop.bean.User">
+  DELETE FROM user where uid = #{uid}
+  </delete>
+  
+  <update id="userUpdate" parameterType="com.wjmShop.bean.User">
+  UPDATE user SET 
+  username = #{username}
+  ,password = #{password}
+  ,name = #{name}
+  ,email = #{email}
+  ,phone = #{phone}
+  ,addr = #{addr}
+  WHERE uid = #{uid}
+  </update>
+</mapper> 

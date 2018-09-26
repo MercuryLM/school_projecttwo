@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="productMapping">  
+	<select id="findHot" resultType="com.wjmShop.bean.Product">
+	SELECT
+		 pid
+		 ,pname
+		,market_price
+		,shop_price
+		,image
+		,pdesc
+		,is_hot
+		,pdate
+	FROM 
+		product
+	WHERE
+		is_hot = 1
+	ORDER BY
+		pdate DESC
+	limit 0,10
+	</select>
+	
+	<select id="findNew" resultType="com.wjmShop.bean.Product">
+	SELECT
+		 pid
+		 ,pname
+		,market_price
+		,shop_price
+		,image
+		,pdesc
+		,is_hot
+		,pdate
+	FROM 
+		product
+	ORDER BY
+		pdate DESC
+	limit 0,10
+	</select>
+	
+	<select id="findByPid" resultType="com.wjmShop.bean.Product">
+	SELECT
+		 pid
+		 ,pname
+		,market_price
+		,shop_price
+		,image
+		,pdesc
+		,is_hot
+		,pdate
+	FROM 
+		product
+	WHERE
+		pid = #{pid}
+	</select>
+	
+	<select id="findCountCid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	SELECT
+		COUNT(*)
+		FROM
+		product p
+		WHERE
+		p.csid
+		IN(
+			SELECT
+			cs.csid
+			FROM
+			categorysecond cs
+			LEFT JOIN category c ON c.cid = cs.csid
+			WHERE
+			cs.cid = #{cid}
+			)
+	</select>
+	
+	<select id="findByPageCid" parameterType="java.util.Map" resultType="com.wjmShop.bean.Product">
+	SELECT
+		p.*
+		FROM
+		product p
+		WHERE
+		p.csid
+		IN(
+			SELECT
+			cs.csid
+			FROM
+			categorysecond cs
+			LEFT JOIN category c ON c.cid = cs.csid
+			WHERE
+			cs.cid = #{cid}
+			)
+		LIMIT #{begin},#{limit}
+	</select>
+	
+	<select id="findCountCsid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	SELECT
+		COUNT(*)
+		FROM
+		product p
+		WHERE
+		p.csid
+		IN(
+			SELECT
+			cs.csid
+			FROM
+			categorysecond cs
+			LEFT JOIN category c ON c.cid = cs.csid
+			WHERE
+			cs.csid = #{csid}
+			)
+	</select>
+	
+	<select id="findByPageCsid" parameterType="java.util.Map" resultType="com.wjmShop.bean.Product">
+	SELECT
+		p.*
+		FROM
+		product p
+		WHERE
+		p.csid
+		IN(
+			SELECT
+			cs.csid
+			FROM
+			categorysecond cs
+			LEFT JOIN category c ON c.cid = cs.csid
+			WHERE
+			cs.csid = #{csid}
+			)
+		LIMIT #{begin},#{limit}
+	</select>
+	
+	<select id="getProductByUid" parameterType="java.lang.Integer" resultType="com.wjmShop.bean.Product">
+	SELECT 
+		p.pid
+		,p.pname
+		,p.market_price
+		,p.shop_price
+		,p.image
+		,p.pdesc
+		,is_hot
+		,p.pdate
+	FROM 
+		product p
+	WHERE
+		p.pid IN
+		(
+			SELECT oi.pid
+			FROM orderitem oi
+			LEFT JOIN orders o ON o.oid = oi.oid 
+			WHERE o.uid = 7
+		  GROUP BY oi.pid
+		)
+	ORDER BY
+	p.pid
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Integer">
+	SELECT count(*) FROM Product
+	</select>
+	
+	<select id="findByPage" resultType="com.wjmShop.bean.Product">
+	SELECT
+		p.pid
+		,p.pname
+		,p.market_price
+		,p.shop_price
+		,p.image
+		,p.pdesc
+		,is_hot
+		,p.pdate
+	FROM product p
+	ORDER BY pdate DESC
+	LIMIT #{begin},#{limit}
+	</select>
+	
+	<insert id="save" parameterType="com.wjmShop.bean.Product">
+	INSERT INTO product
+	(pname, market_price, shop_price, image, pdesc, is_hot, pdate, csid) 
+	VALUE 
+	(#{pname}, #{market_price}, #{shop_price}, #{image}, #{pdesc}, #{is_hot}, #{pdate}, #{csid})
+	</insert>
+	
+	<delete id="delete" parameterType="com.wjmShop.bean.Product">
+	DELETE FROM product WHERE pid = #{pid}
+	</delete>
+</mapper> 

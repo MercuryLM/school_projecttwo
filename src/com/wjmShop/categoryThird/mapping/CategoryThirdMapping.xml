@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="categoryThirdMapping">  
+	<select id="findAll" resultType="com.wjmShop.bean.CategoryThird">
+	SELECT
+		ct.ctid
+		,ct.ctname
+		,ct.csid
+	FROM
+		categorythird ct
+	LEFT JOIN category cs on cs.csid = ct.ctid
+	WHERE ct.csid = #{csid}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Integer">
+	SELECT count(*) FROM CategoryThird
+	</select>
+	
+	<select id="findByPage" parameterType="java.util.Map" resultType="com.wjmShop.bean.CategoryThird">
+	SELECT ctid, ctname, csid FROM categorythird ORDER BY ctid DESC LIMIT #{begin},#{limit} 
+	</select>
+	
+	<insert id="save" parameterType="com.wjmShop.bean.CategoryThird">
+	INSERT INTO categorythird (ctid, ctname, csid) VALUE (#{ctid}, #{ctname}, #{csid})
+	</insert>
+	
+	<delete id="delete" parameterType="com.wjmShop.bean.CategoryThird">
+	DELETE FROM categorythird WHERE ctid = #{ctid}
+	</delete>
+	
+	<select id="findByCtid" parameterType="java.lang.Integer" resultType="com.wjmShop.bean.CategoryThird">
+	SELECT ctid, ctname, csid FROM categorythird WHERE ctid = #{ctid}
+	</select>
+	
+	<update id="update" parameterType="com.wjmShop.bean.CategoryThird">
+	UPDATE categorythird SET ctname = #{ctname} WHERE ctid = #{ctid}
+	</update>
+	
+	<select id="findThirdAll" resultType="com.wjmShop.bean.CategoryThird">
+	SELECT
+		ct.ctid
+		,ct.ctname
+		,ct.csid
+	FROM
+		categorythird ct
+	</select>
+</mapper> 

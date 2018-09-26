@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="orderItemMapping">  
+	<insert id="orderItemSave" parameterType="com.wjmShop.bean.OrderItem" flushCache="true">  
+	     INSERT INTO orderitem (count, subtotal, pid, oid) 
+	     VALUES (#{count}, #{subtotal}, #{pid}, #{oid})  
+	 </insert>
+	 
+	 <select id="getPageByOid" parameterType="java.lang.Integer" resultType="com.wjmShop.bean.OrderItem">
+	 SELECT
+		 itemid
+		 ,count
+		 ,subtotal
+		 ,pid
+		 ,oid
+	 FROM
+	 	orderitem
+	 WHERE
+	 	oid = #{oid}
+	 </select>
+	 
+	 <select id="getOrderitemByPid" parameterType="java.lang.Integer" resultType="com.wjmShop.bean.OrderItem">
+	 SELECT
+		 itemid
+		 ,count
+		 ,subtotal
+		 ,pid
+		 ,oid
+	 FROM
+	 	orderitem
+	 WHERE
+	 	pid = #{pid}
+	 </select>
+</mapper> 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="categoryMapping">  
+
+	<select id="findAll" resultType="com.wjmShop.bean.Category">
+	SELECT cid, cname FROM category
+	</select>
+  
+	<insert id="save" parameterType="com.wjmShop.bean.Category">
+	INSERT INTO category (cname) VALUE (#{cname})
+	</insert>
+	
+	<select id="findByCid" parameterType="java.lang.Integer" resultType="com.wjmShop.bean.Category">
+	SELECT cid, cname FROM category WHERE cid = #{cid}
+	</select>
+	
+	<delete id="delete" parameterType="com.wjmShop.bean.Category">
+	DELETE FROM category WHERE cid = #{cid}
+	</delete>
+	 
+	<update id="update" parameterType="com.wjmShop.bean.Category">
+	UPDATE category SET cname = #{cname} WHERE cid = #{cid}
+	</update>
+	
+	<delete id="deleteSecond" parameterType="com.wjmShop.bean.Category">
+	DELETE FROM categorysecond WHERE cid = #{cid}
+	</delete>
+</mapper> 

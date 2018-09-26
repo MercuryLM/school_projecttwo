@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="categorySecondMapping">  
+	<select id="findAll" resultType="com.wjmShop.bean.CategorySecond">
+	SELECT
+		cs.csid
+		,cs.csname
+		,cs.cid
+	FROM
+		categorysecond cs
+	LEFT JOIN category c on c.cid = cs.csid
+	WHERE cs.cid = #{cid}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Integer">
+	SELECT count(*) FROM CategorySecond
+	</select>
+	
+	<select id="findByPage" parameterType="java.util.Map" resultType="com.wjmShop.bean.CategorySecond">
+	SELECT csid, csname, cid FROM categorysecond ORDER BY csid DESC LIMIT #{begin},#{limit} 
+	</select>
+	
+	<insert id="save" parameterType="com.wjmShop.bean.CategorySecond">
+	INSERT INTO categorysecond (csid, csname, cid) VALUE (#{csid}, #{csname}, #{cid})
+	</insert>
+	
+	<delete id="delete" parameterType="com.wjmShop.bean.CategorySecond">
+	DELETE FROM categorysecond WHERE csid = #{csid}
+	</delete>
+	
+	<select id="findByCsid" parameterType="java.lang.Integer" resultType="com.wjmShop.bean.CategorySecond">
+	SELECT csid, csname, cid FROM categorysecond WHERE csid = #{csid}
+	</select>
+	
+	<update id="update" parameterType="com.wjmShop.bean.CategorySecond">
+	UPDATE categorysecond SET csname = #{csname} WHERE csid = #{csid}
+	</update>
+	
+	<select id="findSecondAll" resultType="com.wjmShop.bean.CategorySecond">
+	SELECT
+		cs.csid
+		,cs.csname
+		,cs.cid
+	FROM
+		categorysecond cs
+	</select>
+</mapper> 
