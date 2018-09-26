@@ -14,7 +14,7 @@ import com.wjmShop.utils.BaseAction;
 import com.wjmShop.utils.PageBean;
 
 /**
- * 后台二级分类的管理的Action.
+ * 后台三级分类的管理的Action.
  * 
  * @author
  * 
@@ -89,9 +89,9 @@ public class AdminCategoryThirdAction extends BaseAction implements ModelDriven<
 	// 跳转到添加页面的方法:
 	public String addPage() {
 		// 查询所有一级分类.
-		List<CategorySecond> cList = categorySecondService.findAll();
+		List<CategorySecond> csList = categorySecondService.findAll();
 		// 将集合存入到值栈中.
-		ActionContext.getContext().getValueStack().set("cList", cList);
+		ActionContext.getContext().getValueStack().set("csList", csList);
 		// 页面跳转:
 		return "addPage";
 	}

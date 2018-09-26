@@ -52,6 +52,7 @@ public class CategoryServiceImpl extends SqlSessionDaoSupport implements Categor
 	public void delete(Category category) {
 		// 删除一级分类下的所有二级分类
 		this.getSqlSession().delete("categoryMapping.deleteSecond", category);
+		this.getSqlSession().delete("categoryMapping.deleteThird", category);
 		// 删除一级分类
 		this.getSqlSession().delete("categoryMapping.delete", category);
 		

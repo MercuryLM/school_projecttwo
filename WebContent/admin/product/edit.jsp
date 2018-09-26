@@ -61,9 +61,9 @@ String path = request.getContextPath();
 						所属的一级分类：
 					</td>
 					<td class="ta_01" bgColor="#FFFFFF" colspan="3">
-						<select name="csid">
-							<s:iterator var="cs" value="csList">
-								<option value="<s:property value="#cs.csid"/>" <s:if test="#cs.csid == model.categorySecond.csid">selected</s:if>><s:property value="#cs.csname"/></option>
+						<select name="cid">
+							<s:iterator var="c" value="cList">
+								<option value="<s:property value="#c.cid"/>" <s:if test="#c.cid == model.category.cid">selected</s:if>><s:property value="#c.cname"/></option>
 							</s:iterator>
 						</select>
 					</td>
@@ -85,9 +85,9 @@ String path = request.getContextPath();
 						所属的三级分类：
 					</td>
 					<td class="ta_01" bgColor="#FFFFFF" colspan="3">
-						<select name="csid">
-							<s:iterator var="cs" value="csList">
-								<option value="<s:property value="#cs.csid"/>" <s:if test="#cs.csid == model.categorySecond.csid">selected</s:if>><s:property value="#cs.csname"/></option>
+						<select name="ctid">
+							<s:iterator var="ct" value="ctList">
+								<option value="<s:property value="#ct.ctid"/>" <s:if test="#ct.ctid == model.categoryThird.ctid">selected</s:if>><s:property value="#ct.ctname"/></option>
 							</s:iterator>
 						</select>
 					</td>

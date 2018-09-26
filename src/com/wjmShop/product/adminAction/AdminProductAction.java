@@ -9,8 +9,11 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
+import com.wjmShop.bean.Category;
 import com.wjmShop.bean.CategorySecond;
+import com.wjmShop.bean.CategoryThird;
 import com.wjmShop.bean.Product;
+import com.wjmShop.category.service.CategoryService;
 import com.wjmShop.categorySecond.service.CategorySecondService;
 import com.wjmShop.categoryThird.service.CategoryThirdService;
 import com.wjmShop.order.service.OrderService;
@@ -44,6 +47,9 @@ public class AdminProductAction extends BaseAction implements ModelDriven<Produc
 	// 注入ProductService
 	@Resource
 	private ProductService productService;
+	
+	@Resource
+	private CategoryService categoryService;
 
 	// 注入CategorySecondService
 	@Resource
@@ -125,9 +131,13 @@ public class AdminProductAction extends BaseAction implements ModelDriven<Produc
 	// 跳转到添加页面的方法:
 	public String addPage() {
 		// 查询所有的二级分类:
+		List<Category> cList = categoryService.findAll();
 		List<CategorySecond> csList = categorySecondService.findAll();
+		List<CategoryThird> ctList = categoryThirdService.findAll();
 		// 将二级分类的数据显示到页面上
+		ActionContext.getContext().getValueStack().set("cList", cList);
 		ActionContext.getContext().getValueStack().set("csList", csList);
+		ActionContext.getContext().getValueStack().set("ctList", ctList);
 		// 页面跳转
 		return "addPageSuccess";
 	}

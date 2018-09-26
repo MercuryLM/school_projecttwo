@@ -13,7 +13,7 @@ import com.wjmShop.categoryThird.service.CategoryThirdService;
 @Service("categoryThirdService")
 public class CategoryThirdServiceImpl extends SqlSessionDaoSupport implements CategoryThirdService{
 
-	// 查询一级分类下所有二级分类
+	// 查询二级分类下所有三级分类
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CategoryThird> findAll(Integer csid) {
@@ -52,7 +52,7 @@ public class CategoryThirdServiceImpl extends SqlSessionDaoSupport implements Ca
 		}
 	}
 
-	// 添加二级分类
+	// 添加三级分类
 	@Override
 	public void save(CategoryThird categoryThird) {
 		this.getSqlSession().insert("categoryThirdMapping.save", categoryThird);

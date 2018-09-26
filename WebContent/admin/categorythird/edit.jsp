@@ -20,7 +20,7 @@ String path = request.getContextPath();
 	</head>
 
 	<body leftmargin="2" topmargin="9" background='<%=path %>/images/allbg.gif'>
-		<form id="categoryThirdAction_save_do" action="<%=path %>/admincategoryThird_update" name="formAdd" method="post">
+		<form id="categoryThirdAction_save_do" action="<%=path %>/adminCategoryThird_update.action" name="formAdd" method="post">
 			<input type="hidden" name="ctid" value="<s:property value="model.ctid"/>" />
 			     <table width="98%" align="center" border="0" cellpadding="4" cellspacing="1" bgcolor="#CBD8AC" style="margin-bottom:8px">
 					<tr bgcolor="#EEF4EA">

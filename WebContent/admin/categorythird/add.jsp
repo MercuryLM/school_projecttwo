@@ -32,7 +32,7 @@ String path = request.getContextPath();
 						        三级分类名称：
 						    </td>
 						    <td width="40%" bgcolor="#FFFFFF" align="left">
-						        <input type="text" name="csname" value="" id="adminCategoryThirdAction_save_do_logonName" size="20"/>
+						        <input type="text" name="ctname" value="" id="adminCategoryThirdAction_save_do_logonName" size="20"/>
 						    </td>
 						    <td width="10%" bgColor="#FFFFFF" align="left">
 							所属的二级分类：
